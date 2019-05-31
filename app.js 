@@ -1,0 +1,18 @@
+
+// A function which calculates the budget on the backend 
+var budgetController = (function() {
+
+}) ();
+
+
+// A function to updat the UI 
+var UIController = (function() {
+
+}) ();
+
+
+// A function to connect the frontend and backend 
+var controller = (function() {
+
+    
+})();
