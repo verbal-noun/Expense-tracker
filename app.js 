@@ -1,12 +1,11 @@
-
-// A function which calculates the budget on the backend 
-var budgetController = (function() {
-
-}) ();
+// The backend module to handle calculations 
+var budgetController = (function () {
 
 
-// A function to updat the UI 
-var UIController = (function() {
+})();
+
+// A module to update the UI based on user input
+var UIController = (function () {
 
     var DOMstrings =  {
         inputType: '.add__type',
@@ -15,22 +14,26 @@ var UIController = (function() {
         inputBtn: '.add__btn'
     };
 
+
     return {
-        getInput: function(){
-            return{
-            type: document.querySelector(DOMstrings.inputType).value, // Will be 'inc' or 'exp'
-            description: document.querySelector(DOMstrings.inputDescription).value,
-            value: document.querySelector(DOMstrings.inputValue).value,
-            }
+        getInput: function () {
+            return {
+                type: document.querySelector(DOMstrings.inputType).value, // Will be 'inc' or 'exp'
+                description: document.querySelector(DOMstrings.inputDescription).value,
+                value: document.querySelector(DOMstrings.inputValue).value,
+            };
         },
-        getDOMstrings: function(){
+
+        getDOMstrings:function() {
             return DOMstrings;
         }
-    }
-}) ();
+
+    };
+
+})();
 
 
-// A function to connect the frontend and backend 
+// A module to bridge frontend and backend 
 var controller = (function (budget, UIctrl) {
 
     // Importing the class names 
