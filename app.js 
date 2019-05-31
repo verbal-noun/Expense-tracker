@@ -8,11 +8,24 @@ var budgetController = (function() {
 // A function to updat the UI 
 var UIController = (function() {
 
+    return {
+        getInput: function(){
+
+        }
+    }
 }) ();
 
 
 // A function to connect the frontend and backend 
 var controller = (function() {
 
-    
+    var addItems = function() {
+        // Function 
+
+    };
+
+    document.querySelector('add__btn').addEventListener('click', value);
+    document.addEventListener('keypress', function(event){
+
+});
 })();
