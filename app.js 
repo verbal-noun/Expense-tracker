@@ -8,24 +8,61 @@ var budgetController = (function() {
 // A function to updat the UI 
 var UIController = (function() {
 
+    var DOMstrings =  {
+        inputType: '.add__type',
+        inputDescription: '.add__description',
+        inputValue: '.add__value',
+        inputBtn: '.add__btn'
+    };
+
     return {
         getInput: function(){
-
+            return{
+            type: document.querySelector(DOMstrings.inputType).value, // Will be 'inc' or 'exp'
+            description: document.querySelector(DOMstrings.inputDescription).value,
+            value: document.querySelector(DOMstrings.inputValue).value,
+            }
+        },
+        getDOMstrings: function(){
+            return DOMstrings;
         }
     }
 }) ();
 
 
 // A function to connect the frontend and backend 
-var controller = (function() {
+var controller = (function (budget, UIctrl) {
 
-    var addItems = function() {
-        // Function 
+    // Importing the class names 
+    var DOM = UIController.getDOMstrings();
+ 
+    // Adding new items 
+    var addItems = function () {
 
+        // Get the field values 
+        var input = UIController.getInput();
+        // Prompting for a valid value entry 
+        if (input.value == '') {
+            alert('Please enter a valid amount.');
+        }
+        console.log(input);
+
+        // Add item to the budget controller 
+
+        // Add item to the UI 
+
+        // Calculate the budget 
+
+        // Display budget on the UI
     };
 
-    document.querySelector('add__btn').addEventListener('click', value);
-    document.addEventListener('keypress', function(event){
+    // Action when Return/Enter pressed or green add button is pressed 
+    document.querySelector(DOM.inputBtn).addEventListener('click', addItems);
+    document.addEventListener("keypress", function (event) {
+        // When Enter is pressed in keyboard 
+        if (event.keyCode == 13 || event.which == 13) {
+            addItems();
+        }
+    });
 
-});
-})();
+})(budgetController, UIController);
