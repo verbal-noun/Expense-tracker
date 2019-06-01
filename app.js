@@ -47,12 +47,7 @@ var budgetController = (function () {
             // Returning new item 
             return newItem;
             
-        },
-        // A module to test the data structure 
-        testing: function(){
-            console.log(data);
         }
-    
     };
 
 })();
@@ -112,9 +107,26 @@ var UIController = (function () {
 
         },
 
-        getDOMstrings:function() {
+        // Method to clear existing fields of data 
+        clearFields: function() {
+            var fields, arrField;
+            // Selecting the input fields 
+            fields = document.querySelectorAll(DOMstrings.inputDescription + ',' + 
+            DOMstrings.inputValue);    
+
+            arrField = Array.prototype.slice.call(fields); // Converting list to array 
+
+            // Clear out each of the input fields 
+            arrField.forEach(function(current, index, array) {
+                current.value = "";
+            });
+            // Focus on the item description after each entry 
+            arrField[0].focus();
+        },
+
+        getDOMstrings: function() {
             return DOMstrings;
-        }
+        } 
 
     };
 
@@ -134,7 +146,6 @@ var controller = (function (budget, UIctrl) {
         document.addEventListener("keypress", function (event) {
         // When Enter is pressed in keyboard 
             if (event.keyCode == 13 || event.which == 13) {
-
             addItems();
             }
         });
@@ -145,6 +156,7 @@ var controller = (function (budget, UIctrl) {
         var input, newItem;
         // Get the field values 
         input = UIController.getInput();
+        
         // Prompting for a valid value entry 
         if (input.value == '') {
             alert('Please enter a valid amount.');
@@ -152,8 +164,12 @@ var controller = (function (budget, UIctrl) {
 
         // Add item to the budget controller 
         newItem = budget.itemAdder(input.type, input.description, input.value);
+
         // Add item to the UI 
         UIctrl.addListItem(newItem, input.type);
+
+        // Clear input fields 
+        UIctrl.clearFields(); 
 
         // Calculate the budget 
 
