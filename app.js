@@ -79,6 +79,8 @@ var UIController = (function () {
 
         addListItem: function(obj, type){
 
+            var html, newHtml;
+
             // Create HTML string with placeholder text 
             if(type === 'inc'){
                 html = '<div class="item clearfix" id="income-%id%"> <div class="item__description"> %Description %</div>' +
@@ -91,7 +93,9 @@ var UIController = (function () {
             }
 
             // Replace placeholder with actual value 
-
+            newHtml = html.replace('%id%', obj.id);
+            newHtml = newHtml.replace('%description%', obj.description);
+            newHtml = newHtml.replace('%value%', obj.value);
             // Insert HTML into the DOM 
         },
 
