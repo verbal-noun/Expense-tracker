@@ -1,6 +1,18 @@
 // The backend module to handle calculations 
 var budgetController = (function () {
-
+    // Object to track expenses 
+    var Expense = function(id, description, value){
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    }
+    
+    // Object to track income
+    var Income = function(id, description, value){
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    }
 
 })();
 
