@@ -64,7 +64,9 @@ var UIController = (function () {
         inputType: '.add__type',
         inputDescription: '.add__description',
         inputValue: '.add__value',
-        inputBtn: '.add__btn'
+        inputBtn: '.add__btn',
+        incomeContainer: '.income__list',
+        expenseContainer: '.expense__list'
     };
 
 
@@ -79,14 +81,20 @@ var UIController = (function () {
 
         addListItem: function(obj, type){
 
-            var html, newHtml;
+            var html, newHtml, element;
 
             // Create HTML string with placeholder text 
             if(type === 'inc'){
+                // The HTML class we want to add
+                element = DOMstrings.incomeContainer;
+
+                // Placeholder HTML
                 html = '<div class="item clearfix" id="income-%id%"> <div class="item__description"> %Description %</div>' +
             '<div class="right clearfix"> <div class="item__value"> %value5 </div> <div class="item__delete">' + 
             '<button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button> </div> </div> </div>';
             } else if(type === 'exp') {
+                element = DOMstrings.expenseContainer;
+
                 html = '<div class="item clearfix" id="expense-%id%"> <div class="item__description"> %Description% </div>' +
                 '<div class="right clearfix"> <div class="item__value"> %value% </div> <div class="item__delete">' + 
                 '<button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button> </div> </div> </div>';
@@ -96,7 +104,11 @@ var UIController = (function () {
             newHtml = html.replace('%id%', obj.id);
             newHtml = newHtml.replace('%description%', obj.description);
             newHtml = newHtml.replace('%value%', obj.value);
+
             // Insert HTML into the DOM 
+            // 'beforeend' makes the newHtml insert as the last child of that element 
+            document.querySelector(element).insertAdjacentHTML('beforeend', newHtml); 
+
         },
 
         getDOMstrings:function() {
