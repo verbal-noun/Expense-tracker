@@ -30,7 +30,12 @@ var budgetController = (function () {
         itemAdder: function(type, des, val) {
             var newItem;
             // A ID to track each items in exp and inc 
-            ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
+            if(data.allItems[type].length > 0){
+                ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
+            } else {
+                ID = 0;
+            }
+            
             // Determining item type 
             if(type === 'exp'){
                 newItem = new Expense(ID, des, val);
@@ -42,7 +47,12 @@ var budgetController = (function () {
             // Returning new item 
             return newItem;
             
+        },
+        // A module to test the data structure 
+        testing: function(){
+            console.log(data);
         }
+    
     };
 
 })();
