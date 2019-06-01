@@ -13,7 +13,8 @@ var budgetController = (function () {
         this.description = description;
         this.value = value;
     };
-
+    
+    // Object to hold all items 
     var data = {
         allItems: {
             exp: [],
@@ -28,12 +29,19 @@ var budgetController = (function () {
     return {
         itemAdder: function(type, des, val) {
             var newItem;
-            ID = 0;
+            // A ID to track each items in exp and inc 
+            ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
+            // Determining item type 
             if(type === 'exp'){
                 newItem = new Expense(ID, des, val);
             } else if(type === 'inc') {
                 newItem = new Income(ID, des, val);
             }
+            // Adding new item to the suitable array in data object 
+            data.allItems[type].push(newItem);
+            // Returning new item 
+            return newItem;
+            
         }
     };
 
@@ -71,6 +79,7 @@ var UIController = (function () {
 // A module to bridge frontend and backend 
 var controller = (function (budget, UIctrl) {
 
+    // A function which initates all event listeners 
     var setUpEventListeners = function() {
 
         // Importing the class names 
@@ -95,15 +104,17 @@ var controller = (function (budget, UIctrl) {
         if (input.value == '') {
             alert('Please enter a valid amount.');
         }
-        // Add item to the budget controller 
 
+        // Add item to the budget controller 
+        budget.itemAdder(input.type, input.description, input.value);
         // Add item to the UI 
 
-        // Calculate the budget 
+        // Calculate the bud get 
 
         // Display budget on the UI
     };
     return {
+        // A initialization function 
         init: function() {
             console.log("The application has started.");
             setUpEventListeners();
@@ -111,4 +122,5 @@ var controller = (function (budget, UIctrl) {
     };
 })(budgetController, UIController);
 
+// Initiating the application 
 controller.init();
