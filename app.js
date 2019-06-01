@@ -66,7 +66,7 @@ var UIController = (function () {
         inputValue: '.add__value',
         inputBtn: '.add__btn',
         incomeContainer: '.income__list',
-        expenseContainer: '.expense__list'
+        expenseContainer: '.expenses__list'
     };
 
 
@@ -89,13 +89,13 @@ var UIController = (function () {
                 element = DOMstrings.incomeContainer;
 
                 // Placeholder HTML
-                html = '<div class="item clearfix" id="income-%id%"> <div class="item__description"> %Description %</div>' +
-            '<div class="right clearfix"> <div class="item__value"> %value5 </div> <div class="item__delete">' + 
+                html = '<div class="item clearfix" id="income-%id%"> <div class="item__description"> %description% </div>' +
+            '<div class="right clearfix"> <div class="item__value"> %value% </div> <div class="item__delete">' + 
             '<button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button> </div> </div> </div>';
             } else if(type === 'exp') {
                 element = DOMstrings.expenseContainer;
 
-                html = '<div class="item clearfix" id="expense-%id%"> <div class="item__description"> %Description% </div>' +
+                html = '<div class="item clearfix" id="expense-%id%"> <div class="item__description"> %description% </div>' +
                 '<div class="right clearfix"> <div class="item__value"> %value% </div> <div class="item__delete">' + 
                 '<button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button> </div> </div> </div>';
             }
@@ -141,19 +141,20 @@ var controller = (function (budget, UIctrl) {
    
     // Adding new items 
     var addItems = function () {
-
+        var input, newItem;
         // Get the field values 
-        var input = UIController.getInput();
+        input = UIController.getInput();
         // Prompting for a valid value entry 
         if (input.value == '') {
             alert('Please enter a valid amount.');
         }
 
         // Add item to the budget controller 
-        budget.itemAdder(input.type, input.description, input.value);
+        newItem = budget.itemAdder(input.type, input.description, input.value);
         // Add item to the UI 
+        UIctrl.addListItem(newItem, input.type);
 
-        // Calculate the bud get 
+        // Calculate the budget 
 
         // Display budget on the UI
     };
