@@ -36,9 +36,21 @@ var UIController = (function () {
 // A module to bridge frontend and backend 
 var controller = (function (budget, UIctrl) {
 
-    // Importing the class names 
-    var DOM = UIController.getDOMstrings();
- 
+    var setUpEventListeners = function() {
+
+        // Importing the class names 
+        var DOM = UIController.getDOMstrings();
+        // Action when Return/Enter pressed or green add button is pressed 
+        document.querySelector(DOM.inputBtn).addEventListener('click', addItems);
+        document.addEventListener("keypress", function (event) {
+        // When Enter is pressed in keyboard 
+            if (event.keyCode == 13 || event.which == 13) {
+
+            addItems();
+            }
+        });
+    };
+   
     // Adding new items 
     var addItems = function () {
 
@@ -48,8 +60,6 @@ var controller = (function (budget, UIctrl) {
         if (input.value == '') {
             alert('Please enter a valid amount.');
         }
-        console.log(input);
-
         // Add item to the budget controller 
 
         // Add item to the UI 
@@ -58,14 +68,12 @@ var controller = (function (budget, UIctrl) {
 
         // Display budget on the UI
     };
-
-    // Action when Return/Enter pressed or green add button is pressed 
-    document.querySelector(DOM.inputBtn).addEventListener('click', addItems);
-    document.addEventListener("keypress", function (event) {
-        // When Enter is pressed in keyboard 
-        if (event.keyCode == 13 || event.which == 13) {
-            addItems();
+    return {
+        init: function() {
+            console.log("The application has started.");
+            setUpEventListeners();
         }
-    });
-
+    };
 })(budgetController, UIController);
+
+controller.init();
