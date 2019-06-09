@@ -56,6 +56,10 @@ var budgetController = (function () {
 
 })();
 
+
+//----------------------------------------------------------------------------------------------------------------------//
+
+
 // A module to update the UI based on user input
 var UIController = (function () {
 
@@ -137,6 +141,9 @@ var UIController = (function () {
 })();
 
 
+// ----------------------------------------------------------------------------------------------------------------------//
+
+
 // A module to bridge frontend and backend 
 var controller = (function (budget, UIctrl) {
 
@@ -169,23 +176,21 @@ var controller = (function (budget, UIctrl) {
         var input, newItem;
         // Get the field values 
         input = UIController.getInput();
-        
-        // Prompting for a valid value entry 
-        if (input.value == '') {
-            alert('Please enter a valid amount.');
+
+        // Checking input validity 
+        if (input.description !== '' && !isNaN(input.value) && input.value > 0) {
+            // Add item to the budget controller 
+            newItem = budget.itemAdder(input.type, input.description, input.value);
+
+            // Add item to the UI 
+            UIctrl.addListItem(newItem, input.type);
+
+            // Clear input fields 
+            UIctrl.clearFields(); 
+
+            // Calculate and update the budget 
+            updateBudget();
         }
-
-        // Add item to the budget controller 
-        newItem = budget.itemAdder(input.type, input.description, input.value);
-
-        // Add item to the UI 
-        UIctrl.addListItem(newItem, input.type);
-
-        // Clear input fields 
-        UIctrl.clearFields(); 
-
-        // Calculate and update the budget 
-        updateBudget();
     };
     return {
         // A initialization function 
