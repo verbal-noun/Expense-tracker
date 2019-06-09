@@ -70,7 +70,7 @@ var budgetController = (function () {
             data.budget = data.totals.inc - data.totals.exp;
 
             // Calculate percentaile of expense is of the budget 
-            data.percentage = (data.totals.exp / data.totals.inc) * 100;
+            data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
         },
 
         testing: function() {
