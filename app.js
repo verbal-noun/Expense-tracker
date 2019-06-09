@@ -47,6 +47,10 @@ var budgetController = (function () {
             // Returning new item 
             return newItem;
             
+        },
+
+        testing: function() {
+            return data;
         }
     };
 
@@ -70,7 +74,7 @@ var UIController = (function () {
             return {
                 type: document.querySelector(DOMstrings.inputType).value, // Will be 'inc' or 'exp'
                 description: document.querySelector(DOMstrings.inputDescription).value,
-                value: document.querySelector(DOMstrings.inputValue).value,
+                value: parseFloat(document.querySelector(DOMstrings.inputValue).value) 
             };
         },
 
