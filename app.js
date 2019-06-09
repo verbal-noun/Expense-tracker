@@ -21,6 +21,7 @@ var budgetController = (function () {
         data.allItems[type].forEach(function(curr) {
             sum += curr.value;
         });
+        data.totals[type] = sum;
     };
     
     // Object to hold all items 
@@ -60,7 +61,8 @@ var budgetController = (function () {
 
         calculateBudget: function() {
             // Add all items income and expense 
-
+            calculateTotal('inc');
+            calculateTotal('exp');
             // Calculate budget = income - expense 
 
             // Calculate percentaile of expense is of the budget 
