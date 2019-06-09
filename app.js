@@ -34,7 +34,8 @@ var budgetController = (function () {
             exp: 0,
             inc: 0
         },
-        budget: 0
+        budget: 0,
+        percentage: -1
     };
 
     return {
@@ -67,7 +68,9 @@ var budgetController = (function () {
 
             // Calculate budget = income - expense 
             data.budget = data.totals.inc - data.totals.exp;
+
             // Calculate percentaile of expense is of the budget 
+            data.percentage = (data.totals.exp / data.totals.inc) * 100;
         },
 
         testing: function() {
