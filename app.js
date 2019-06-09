@@ -13,6 +13,15 @@ var budgetController = (function () {
         this.description = description;
         this.value = value;
     };
+
+    // Function to calculate the total items of an array 
+    var calculateTotal = function(type) {
+        var sum = 0;
+        // Adding all values up 
+        data.allItems[type].forEach(function(curr) {
+            sum += curr.value;
+        });
+    };
     
     // Object to hold all items 
     var data = {
@@ -47,6 +56,14 @@ var budgetController = (function () {
             // Returning new item 
             return newItem;
             
+        },
+
+        calculateBudget: function() {
+            // Add all items income and expense 
+
+            // Calculate budget = income - expense 
+
+            // Calculate percentaile of expense is of the budget 
         },
 
         testing: function() {
@@ -165,7 +182,7 @@ var controller = (function (budget, UIctrl) {
     var updateBudget = function() {
 
         //  Calculate the budget 
-
+        
         // Return the budget 
 
         // Display the budget on the UI 
