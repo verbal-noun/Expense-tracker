@@ -104,7 +104,11 @@ var UIController = (function () {
         inputValue: '.add__value',
         inputBtn: '.add__btn',
         incomeContainer: '.income__list',
-        expenseContainer: '.expenses__list'
+        expenseContainer: '.expenses__list',
+        budgetLabel: '.budget__value',
+        incomeLabel: '.budget__income--value',
+        expenseLabel: '.budget__expenses--value',
+        percentageLabel: '.budget__expenses--percentage'
     };
 
 
@@ -166,6 +170,10 @@ var UIController = (function () {
             // Focus on the item description after each entry 
             arrField[0].focus();
         },
+
+        UpdateUI: function() {
+            
+        }, 
 
         getDOMstrings: function() {
             return DOMstrings;
